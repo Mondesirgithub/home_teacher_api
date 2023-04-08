@@ -45,8 +45,8 @@ INSTALLED_APPS = [
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=2),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
@@ -100,11 +100,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3000'
-]
-
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -122,9 +117,12 @@ CORS_ALLOW_HEADERS = [
     'origin',
     'user-agent',
     'x-csrftoken',
-    'x-requested-with',
+    'x-requested-with'
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000'
+]
 
 ROOT_URLCONF = 'hometeacherapi.urls'
 

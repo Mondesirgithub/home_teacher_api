@@ -5,8 +5,8 @@ from datetime import date
 
 class Utilisateur(AbstractUser):
     # Attributs communs à tous les types d'utilisateurs
-    telephone1 = models.CharField(max_length=30)
-    telephone2 = models.CharField(max_length=30, null=True, blank=True)
+    telephone1 = models.CharField(max_length=30,null=True, blank=True,unique=True)
+    telephone2 = models.CharField(max_length=30, null=True, blank=True,unique=True)
 
     class Meta:
         # Définit la table dans la base de données pour la classe parente Utilisateur
@@ -31,7 +31,7 @@ class Eleve(models.Model):
     ecole = models.CharField(max_length=50)
     difficulte = models.TextField()
     lieu_travail = models.CharField(max_length=50)
-    idtuteur = models.ForeignKey(Tuteur, on_delete=models.CASCADE, verbose_name='tuteur')
+    idtuteur = models.ForeignKey(Tuteur, on_delete=models.CASCADE, verbose_name='tuteur', null=True,blank=True)
 
 
     def __str__(self) -> str:
@@ -52,12 +52,12 @@ class Professeur(Utilisateur):
     filiere_etude = models.CharField(max_length=30, null=True, blank=True)
     annee_etude = models.CharField(max_length=30, null=True, blank=True)
     #---Statut Enseignant
-    dernier_diplome = models.CharField(max_length=100)
-    filiere_dernier_diplome = models.CharField(max_length=100)
+    dernier_diplome = models.CharField(max_length=100, null=True, blank=True)
+    filiere_dernier_diplome = models.CharField(max_length=100,blank=True, null=True)
     #--special encadrement
     jours_disponibles = models.CharField(max_length=100)
-    matieres_generales_enseignables = models.CharField(max_length=100)
-    classes_generales_enseignables = models.CharField(max_length=100)
+    matieres_generales_enseignables = models.CharField(max_length=100,blank=True, null=True)
+    classes_generales_enseignables = models.CharField(max_length=100,blank=True, null=True)
     classes_techniques_enseignables = models.CharField(max_length=100, blank=True, null=True)
     matieres_techniques_enseignables = models.CharField(max_length=100, blank=True, null=True)
     zones_travail = models.CharField(max_length=100)

@@ -26,6 +26,7 @@ class TuteurSerializer(serializers.ModelSerializer):
 
 
 class ProfesseurSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Professeur
         fields = ['id','first_name','last_name','username','email','date_naissance', 'adresse', 'statut', 'universite',
@@ -34,6 +35,7 @@ class ProfesseurSerializer(serializers.ModelSerializer):
                   'classes_generales_enseignables','classes_techniques_enseignables','matieres_techniques_enseignables',
                   'zones_travail','periode_journee','piece_jointe','ideleves'
                   ]
+        
 
 class TuteurSerializerWithToken(serializers.ModelSerializer):
     eleves = serializers.SerializerMethodField()
