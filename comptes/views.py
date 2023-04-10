@@ -40,6 +40,13 @@ class MyTokenObtainPairViews(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
     
 
+@api_view(['GET'])
+def tuteurExiste(request, username, password):
+    try:
+        tuteur = Tuteur.objects.get(username=username, password=password)
+        return Response({'existe':1})
+    except:
+        return Response({'existe':0})
 
 @api_view(['GET'])
 def tuteurs(request, pk=None):
@@ -103,7 +110,10 @@ def eleves(request, pk=None):
 def registerEleve(request):
     data = request.data
     try:
-        tuteur = Tuteur.objects.get(username=request.user.username,password=request.user.password)
+        if request.user.is_anonymous:
+            tuteur = Tuteur.objects.get(pk=data['tuteur'])
+        else:
+            tuteur = Tuteur.objects.get(username=request.user.username,password=request.user.password)
     except:
         return Response({"message":"Veuillez vous connecter en tant que tuteur"})
 
@@ -119,6 +129,7 @@ def registerEleve(request):
     )
     serializer = EleveSerializer(eleve, many=False)
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 def registerTuteur(request):
@@ -137,7 +148,7 @@ def registerTuteur(request):
         serializer = TuteurSerializerWithToken(tuteur, many=False)
         return Response(serializer.data)
     except:
-        message = {'message' : 'Un tuteur avec cet email ou ce numero de telephone existe déjà'}
+        message = {'message' : 'Un utilisateur avec cet email ou ce numero de telephone existe déjà'}
         return Response(message)
 
 @api_view(['POST'])
@@ -172,7 +183,7 @@ def registerProfesseur(request):
         serializer = ProfesseurSerializerWithToken(professeur, many=False)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except:
-        message = {'message' : 'Un professeur avec cet email ou ce numero de telephone existe déjà'}
+        message = {'message' : 'Un utilisateur avec cet email ou ce numero de telephone existe déjà'}
         return Response(message)
 
 

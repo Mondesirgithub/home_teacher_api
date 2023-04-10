@@ -29,6 +29,8 @@ class Eleve(models.Model):
     date_naissance = models.DateField()
     classe = models.CharField(max_length=50)
     ecole = models.CharField(max_length=50)
+    periode_journee = models.CharField(max_length=50)
+    jours_disponibles = models.CharField(max_length=50)
     difficulte = models.TextField()
     lieu_travail = models.CharField(max_length=50)
     idtuteur = models.ForeignKey(Tuteur, on_delete=models.CASCADE, verbose_name='tuteur', null=True,blank=True)
@@ -38,8 +40,11 @@ class Eleve(models.Model):
         return f"{self.nom} {self.prenom}"
     
     def save(self, *args, **kwargs):
-        day, month, year = self.date_naissance.split('/') # Récupération de la journée, du mois et de l'année
-        my_date = date(int(year), int(month), int(day)) # Conversion de la date au format souhaité
+        if "/" in self.date_naissance:
+            day, month, year = self.date_naissance.split('/') # Récupération de la journée, du mois et de l'année
+        else:
+            day, month, year = self.date_naissance.split('-') # Récupération de la journée, du mois et de l'année
+        my_date = date(int(day), int(month), int(year)) # Conversion de la date au format souhaité
         self.date_naissance = my_date
         super(Eleve, self).save(*args, **kwargs)
 

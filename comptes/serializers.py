@@ -52,7 +52,7 @@ class TuteurSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = Tuteur
-        fields = ['id','first_name','last_name','username','email','profession','eleves','token']
+        fields = ['id','first_name','last_name','username','email','password','profession','eleves','token']
 
 
 class ProfesseurSerializerWithToken(serializers.ModelSerializer):
@@ -68,5 +68,5 @@ class ProfesseurSerializerWithToken(serializers.ModelSerializer):
                   'filiere_etude','annee_etude','dernier_diplome',
                   'filiere_dernier_diplome','jours_disponibles','matieres_generales_enseignables',
                   'classes_generales_enseignables','classes_techniques_enseignables','matieres_techniques_enseignables',
-                  'zones_travail','periode_journee','piece_jointe','ideleves','token'
+                  'zones_travail','periode_journee','piece_jointe','ideleves','password','token'
                   ]

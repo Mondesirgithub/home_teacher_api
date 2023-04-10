@@ -13,6 +13,7 @@ urlpatterns = [
     path('users/login/', views.MyTokenObtainPairViews.as_view(), name='token_obtain_pair'),
     path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('tuteurs/', views.tuteurs, name='tuteurs'),
+    path('tuteurExiste/<str:username>/<str:password>', views.tuteurExiste, name='tuteurExiste'),
     path('tuteurs/<str:pk>', views.tuteurs, name='tuteurs'),
     path('professeurs/', views.professeurs, name='professeurs'),
     path('professeurs/<str:pk>', views.professeurs, name='professeurs'),
