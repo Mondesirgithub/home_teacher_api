@@ -1,4 +1,6 @@
 apienv/
 env/
+comptes/__pycache__
+comptes/migrations
 
 db.sqlite3
