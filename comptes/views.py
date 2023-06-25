@@ -9,12 +9,14 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.exceptions import ObjectDoesNotExist 
 
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         try:
             data = super().validate(attrs)        
             tuteur = Tuteur.objects.filter(username=attrs['username']).first()
             professeur = Professeur.objects.filter(username=attrs['username']).first() 
+
             if not professeur.estActif:
                 return {'message':"Compte inactif,car vous n'avez pas encore passé l'entretien"}
             
@@ -107,7 +109,6 @@ def eleves(request, pk=None):
 @api_view(['POST'])
 def registerEleve(request):
     data = request.data
-    print("data => ", data)
     try:
         if request.user.is_anonymous:
             tuteur = Tuteur.objects.get(pk=data['tuteur'])
