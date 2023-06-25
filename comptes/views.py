@@ -157,6 +157,11 @@ def registerTuteur(request):
 @api_view(['POST'])
 def registerProfesseur(request):
     data = request.data
+
+    if Professeur.objects.filter(last_name=data['last_name']).exists() or Tuteur.objects.filter(last_name=data['last_name']).exists():
+        message = {'message' : 'Un utilisateur avec ce nom existe déjà'}
+        return Response(message)
+
     try:
         professeur = Professeur.objects.create(
             first_name=data['first_name'],

@@ -1,6 +1,7 @@
 apienv/
 env/
 comptes/__pycache__
+hometeacherapi/__pycache__
 comptes/migrations
 
 db.sqlite3

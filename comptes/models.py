@@ -55,9 +55,9 @@ class Professeur(Utilisateur):
     filiere_dernier_diplome = models.CharField(max_length=100,blank=True, null=True)
     #--special encadrement
     jours_disponibles = models.CharField(max_length=100)
-    matieres_generales_enseignables = models.CharField(max_length=100,blank=True, null=True)
+    matieres_generales_enseignables = models.JSONField()
     classes_generales_enseignables = models.CharField(max_length=100,blank=True, null=True)
-    periode_journee = models.CharField(max_length=50)
+    periode_journee = models.JSONField()
     piece_jointe = models.FileField(upload_to="piece_jointes/")
     ideleves = models.ManyToManyField(Eleve, through='Encadrement', verbose_name='eleves')
     sexe = models.CharField(max_length=10)
