@@ -11,12 +11,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
-<<<<<<< HEAD
 from django.core.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.response import Response
-=======
->>>>>>> 5f48d568c0ec8594379a37f61f7e08ac5e4131ce
 from django.utils.html import strip_tags
 
 

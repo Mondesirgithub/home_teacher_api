@@ -124,11 +124,7 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-<<<<<<< HEAD
     'https://hometeacher-5424e.web.app'
-=======
-    'https://hometeacher-5424e.web.app/'
->>>>>>> 5f48d568c0ec8594379a37f61f7e08ac5e4131ce
 ]
 
 ROOT_URLCONF = 'hometeacherapi.urls'
