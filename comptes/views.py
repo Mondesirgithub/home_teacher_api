@@ -8,6 +8,10 @@ from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.core.exceptions import ObjectDoesNotExist 
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+from django.utils.html import strip_tags
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -194,3 +198,22 @@ def registerProfesseur(request):
         return Response(message)
 
 
+@api_view(['POST'])
+def contact(request):
+    nom = request.data['nom']
+    sujet = request.data['sujet']
+    email = request.data['email']
+    message = request.data['message']
+    subject = "Contact"
+    template = 'comptes/contactEmail.html'
+    context = {'nom': nom, 'sujet':sujet, 'email':email, 'message':message}
+    html_message = render_to_string(template, context)
+    plain_message = strip_tags(html_message)  # Version texte brut du message
+    recipient_list = [settings.EMAIL_HOST_USER]
+    try:
+        send_mail(subject, plain_message, email, recipient_list, html_message=html_message)                
+        message = {'message' : 'success'}
+        return Response(message)    
+    except:
+        message = {'message' : 'erreur'}
+        return Response(message)        

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+jk!wvv0=vl!--2ezx25-)p9hp+y!6=x$1#6zfsbw#$v==wa80
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://hometeacher-5424e.web.app/', 'http://localhost:8000/']
 
 
 # Application definition
@@ -121,7 +121,8 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'https://hometeacher-5424e.web.app/'
 ]
 
 ROOT_URLCONF = 'hometeacherapi.urls'

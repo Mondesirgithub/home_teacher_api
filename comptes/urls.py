@@ -18,4 +18,5 @@ urlpatterns = [
     path('professeurs/<str:pk>', views.professeurs, name='professeurs'),
     path('eleves/', views.eleves, name='eleves'),
     path('eleves/<str:pk>', views.eleves, name='eleves'),
+    path('contact/', views.contact, name='contact'),
 ]
