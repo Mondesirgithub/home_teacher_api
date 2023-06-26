@@ -11,9 +11,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+<<<<<<< HEAD
 from django.core.exceptions import ValidationError
 from rest_framework import status
 from rest_framework.response import Response
+=======
+>>>>>>> 5f48d568c0ec8594379a37f61f7e08ac5e4131ce
 from django.utils.html import strip_tags
 
 
@@ -208,6 +211,7 @@ def registerProfesseur(request):
     except Exception as e:
         # Gérer toutes les autres exceptions génériques ici
         return Response({'message': f'Une erreur s\'est produite lors de la création du professeur : {e}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 @api_view(['POST'])
 def contact(request):
